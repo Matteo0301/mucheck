@@ -1,12 +1,14 @@
-module Examples.AssertCheckTest where
+module AssertCheckTest where
 
+import Data.List
 import Test.MuCheck.TestAdapter.AssertCheck
 
 qsort :: [Int] -> [Int]
 qsort [] = []
-qsort (x:xs) = qsort l ++ [x] ++ qsort r
-    where l = filter (< x) xs
-          r = filter (>= x) xs
+qsort (x : xs) = qsort l ++ [x] ++ qsort r
+  where
+    l = filter (< x) xs
+    r = filter (>= x) xs
 
 uncoveredDummy :: Int -> Int
 uncoveredDummy a = 0 + a
@@ -15,14 +17,13 @@ uncoveredDummy a = 0 + a
 sortEmpty = assertCheck $ qsort [] == []
 
 {-# ANN sortSorted "Test" #-}
-sortSorted = assertCheck $ qsort [1,2,3,4] == [1,2,3,4]
+sortSorted = assertCheck $ qsort [1, 2, 3, 4] == [1, 2, 3, 4]
 
 {-# ANN sortRev "Test" #-}
-sortRev = assertCheck $ qsort [4,3,2,1] == [1,2,3,4]
+sortRev = assertCheck $ qsort [4, 3, 2, 1] == [1, 2, 3, 4]
 
 {-# ANN sortSame "Test" #-}
-sortSame = assertCheck $ qsort [1,1,1,1] == [1,1,1,1]
+sortSame = assertCheck $ qsort [1, 1, 1, 1] == [1, 1, 1, 1]
 
 {-# ANN sortNeg "Test" #-}
-sortNeg = assertCheck $ qsort [-1,-2,3] == [-2,-1,3]
-
+sortNeg = assertCheck $ qsort [-1, -2, 3] == [-2, -1, 3]

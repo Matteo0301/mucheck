@@ -1,9 +1,12 @@
-{-# OPTIONS_GHC -F -pgmF hspec-discover #-}
+--{-# OPTIONS_GHC -F -pgmF hspec-discover #-}
 import Test.Hspec
 
 import qualified Test.MuCheck.Utils.Common
 import qualified Test.MuCheck.Utils.Print
 import qualified Test.MuCheck.Mutation
+import qualified Test.MuCheck.Utils.CommonSpec
+import qualified Test.MuCheck.Utils.PrintSpec
+import qualified Test.MuCheck.MutationSpec
 
 
 main :: IO ()

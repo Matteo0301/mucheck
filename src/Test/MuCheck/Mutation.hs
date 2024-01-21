@@ -2,14 +2,16 @@
 -- | This module handles the mutation of different patterns.
 module Test.MuCheck.Mutation where
 
-import Language.Haskell.Exts.Annotated(Literal(Int, Char, Frac, String, PrimInt, PrimChar, PrimFloat, PrimDouble, PrimWord, PrimString),
+import Language.Haskell.Exts.Syntax(Literal(Int, Char, Frac, String, PrimInt, PrimChar, PrimFloat, PrimDouble, PrimWord, PrimString),
         Exp(App, Var, If, Lit), QName(UnQual),
         Match(Match), Pat(PVar),
         Stmt(Qualifier), Module(Module),
         Name(Ident), Decl(FunBind, PatBind, AnnPragma),
         GuardedRhs(GuardedRhs), Annotation(Ann), Name(Symbol, Ident),
-        prettyPrint, fromParseResult, parseModule, SrcSpanInfo(..), SrcSpan(..),
         ModuleHead(..), ModuleName(..))
+import Language.Haskell.Exts.SrcLoc (SrcSpanInfo (..), SrcSpan(..))
+import Language.Haskell.Exts.Parser (fromParseResult, parseModule)
+import Language.Haskell.Exts.Pretty (prettyPrint)
 import Data.Generics (Typeable, mkMp, listify)
 import Data.List(nub, (\\), permutations, partition)
 import Control.Monad (liftM)
