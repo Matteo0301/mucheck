@@ -163,10 +163,6 @@ evalMethod ::
     -- | Returns the monadic computation to be run by I.runInterpreter
     m t
 evalMethod fileName evalStr = do
-    I.set [I.installedModulesInScope I.:= True]
-    unsafeSetGhcOption "-v"
-    I.setImports ["Prelude", "Test.QuickCheck"]
-    I.set [I.searchPath I.:= ["src", "Examples", "ExamplesTasty"]]
     I.loadModules [fileName]
     ms <- I.getLoadedModules
     I.setTopLevelModules ms
