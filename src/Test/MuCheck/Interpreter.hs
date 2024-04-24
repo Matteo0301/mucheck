@@ -189,7 +189,7 @@ fullSummary m _tests results =
         , _maErrors = length errors
         }
   where
-    res = map (map _io) results
+    res = filter (not . null) $ map (map _io) results
     lasts = map last res -- get the last test runs
     (errors, completed) = partitionEithers lasts
     fails = filter (failure_ m) completed -- look if others failed or not
